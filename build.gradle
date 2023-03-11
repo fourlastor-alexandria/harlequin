@@ -1,0 +1,39 @@
+buildscript {
+    
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        google()
+    }
+    dependencies {
+        classpath "com.badlogicgames.gdx:gdx-tools:1.11.0"
+    }
+}
+
+allprojects {
+    version = '1.0'
+    ext {
+        appName = "Post Apocalyptic"
+        gdxVersion = '1.11.0'
+        roboVMVersion = '2.3.16'
+        box2DLightsVersion = '1.5'
+        ashleyVersion = '1.7.4'
+        aiVersion = '1.8.2'
+        gdxControllersVersion = '2.2.2'
+        aiVersion = '1.8.2'
+        daggerVersion = '2.40'
+    }
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        google()
+        gradlePluginPortal()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+        maven { url "https://jitpack.io" }
+    }
+}

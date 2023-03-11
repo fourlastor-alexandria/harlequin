@@ -1,0 +1,42 @@
+[versions]
+ashley = "1.7.4"
+beryx-runtime = "1.13.0"
+controllers = "2.2.1"
+dagger = "2.44"
+download-plugin = "5.3.0"
+javax = "1"
+gdx = "1.11.0"
+gdxAi = "1.8.2"
+gretty="4.0.3"
+gwt-framework="2.8.2"
+gwt-plugin="1.1.18"
+shadow = "7.1.2"
+spotless = "6.10.0"
+regexodus = "0.1.13"
+textratypist = "0.7.2"
+[libraries]
+ashley = { module = "com.badlogicgames.ashley:ashley", version.ref = "ashley" }
+dagger-core = { module = "com.google.dagger:dagger", version.ref = "dagger"}
+dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger"}
+dagger-gwt = { module = "com.google.dagger:dagger-gwt", version.ref = "dagger"}
+java-inject = { module = "javax.inject:javax.inject", version.ref = "javax" }
+gdx-core = { module = "com.badlogicgames.gdx:gdx", version.ref = "gdx" }
+gdx-platform = { module = "com.badlogicgames.gdx:gdx-platform", version.ref = "gdx" }
+gdx-ai = { module = "com.badlogicgames.gdx:gdx-ai", version.ref = "gdxAi" }
+gdx-box2d-core = { module = "com.badlogicgames.gdx:gdx-box2d", version.ref = "gdx" }
+gdx-box2d-gwt = { module = "com.badlogicgames.gdx:gdx-box2d-gwt", version.ref = "gdx" }
+gdx-box2d-platform = { module = "com.badlogicgames.gdx:gdx-box2d-platform", version.ref = "gdx" }
+gdx-controllers-core = { module = "com.badlogicgames.gdx-controllers:gdx-controllers-core", version.ref = "controllers" }
+gdx-controllers-desktop = { module = "com.badlogicgames.gdx-controllers:gdx-controllers-desktop", version.ref = "controllers" }
+gdx-controllers-gwt = { module = "com.badlogicgames.gdx-controllers:gdx-controllers-gwt", version.ref = "controllers" }
+gdx-backend-lwjgl3 = { module = "com.badlogicgames.gdx:gdx-backend-lwjgl3", version.ref = "gdx" }
+gdx-backend-gwt = { module = "com.badlogicgames.gdx:gdx-backend-gwt", version.ref = "gdx" }
+regexodus = { module = "com.github.tommyettinger:regexodus", version.ref = "regexodus" }
+textratypist = { module = "com.github.tommyettinger:textratypist", version.ref = "textratypist" }
+[plugins]
+beryxRuntime = { id = "org.beryx.runtime", version.ref = "beryx-runtime"}
+download = { id = "de.undercouch.download", version.ref = "download-plugin" }
+gretty = { id = "org.gretty", version.ref = "gretty" }
+gwt = { id = "org.wisepersist.gwt", version.ref = "gwt-plugin" }
+shadow = { id = "com.github.johnrengelman.shadow", version.ref = "shadow" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
