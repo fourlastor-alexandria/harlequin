@@ -2,7 +2,6 @@ package io.github.fourlastor.harlequin.loader.spine.model;
 
 import com.badlogic.gdx.utils.JsonValue;
 import io.github.fourlastor.harlequin.json.JsonParser;
-import javax.inject.Inject;
 
 public class SpineBone {
 
@@ -38,7 +37,6 @@ public class SpineBone {
 
     public static class Parser extends JsonParser<SpineBone> {
 
-        @Inject
         public Parser() {}
 
         @Override
