@@ -2,7 +2,6 @@ package io.github.fourlastor.harlequin.loader.dragonbones.model;
 
 import com.badlogic.gdx.utils.JsonValue;
 import io.github.fourlastor.harlequin.json.JsonParser;
-import javax.inject.Inject;
 
 public class DragonBonesDisplayFrame {
 
@@ -16,7 +15,6 @@ public class DragonBonesDisplayFrame {
     }
 
     public static class Parser extends JsonParser<DragonBonesDisplayFrame> {
-        @Inject
         public Parser() {}
 
         @Override

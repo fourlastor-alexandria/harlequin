@@ -4,7 +4,6 @@ import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.Null;
 import io.github.fourlastor.harlequin.json.JsonParser;
 import java.util.List;
-import javax.inject.Inject;
 
 public class DragonBonesAnimation {
 
@@ -34,9 +33,8 @@ public class DragonBonesAnimation {
 
         private final JsonParser<DragonBonesAnimationSlot> animationSlotParser;
 
-        @Inject
-        public Parser(JsonParser<DragonBonesAnimationSlot> animationSlotParser) {
-            this.animationSlotParser = animationSlotParser;
+        public Parser() {
+            this.animationSlotParser = new DragonBonesAnimationSlot.Parser();
         }
 
         @Override

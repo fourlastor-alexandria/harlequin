@@ -3,7 +3,6 @@ package io.github.fourlastor.harlequin.loader.dragonbones.model;
 import com.badlogic.gdx.utils.FloatArray;
 import com.badlogic.gdx.utils.JsonValue;
 import io.github.fourlastor.harlequin.json.JsonParser;
-import javax.inject.Inject;
 
 public abstract class DragonBonesDisplay {
 
@@ -30,7 +29,6 @@ public abstract class DragonBonesDisplay {
     }
 
     public static class Parser extends JsonParser<DragonBonesDisplay> {
-        @Inject
         public Parser() {}
 
         @Override

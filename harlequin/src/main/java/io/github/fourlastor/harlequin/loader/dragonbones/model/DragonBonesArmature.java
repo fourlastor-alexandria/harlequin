@@ -4,7 +4,6 @@ import com.badlogic.gdx.utils.JsonValue;
 import io.github.fourlastor.harlequin.json.JsonParser;
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
 
 public class DragonBonesArmature {
 
@@ -90,16 +89,11 @@ public class DragonBonesArmature {
         private final JsonParser<DragonBonesSkin> skinParser;
         private final JsonParser<DragonBonesAnimation> animationParser;
 
-        @Inject
-        public Parser(
-                JsonParser<DragonBonesBone> boneParser,
-                JsonParser<DragonBonesArmatureSlot> armatureSlotParser,
-                JsonParser<DragonBonesSkin> skinParser,
-                JsonParser<DragonBonesAnimation> animationParser) {
-            this.boneParser = boneParser;
-            this.armatureSlotParser = armatureSlotParser;
-            this.skinParser = skinParser;
-            this.animationParser = animationParser;
+        public Parser() {
+            this.boneParser = new DragonBonesBone.Parser();
+            this.armatureSlotParser = new DragonBonesArmatureSlot.Parser();
+            this.skinParser = new DragonBonesSkin.Parser();
+            this.animationParser = new DragonBonesAnimation.Parser();
         }
 
         @Override

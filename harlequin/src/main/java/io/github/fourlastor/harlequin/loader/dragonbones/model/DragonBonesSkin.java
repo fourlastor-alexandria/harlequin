@@ -3,7 +3,6 @@ package io.github.fourlastor.harlequin.loader.dragonbones.model;
 import com.badlogic.gdx.utils.JsonValue;
 import io.github.fourlastor.harlequin.json.JsonParser;
 import java.util.List;
-import javax.inject.Inject;
 
 public class DragonBonesSkin {
 
@@ -27,9 +26,8 @@ public class DragonBonesSkin {
 
         private final JsonParser<DragonBonesSkinSlot> skinSlotParser;
 
-        @Inject
-        public Parser(JsonParser<DragonBonesSkinSlot> skinSlotParser) {
-            this.skinSlotParser = skinSlotParser;
+        public Parser() {
+            this.skinSlotParser = new DragonBonesSkinSlot.Parser();
         }
 
         @Override
