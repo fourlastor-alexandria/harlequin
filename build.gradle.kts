@@ -25,7 +25,7 @@ allprojects {
     version = libVersion
 }
 
-group = "io.github.fourlastor"
+group = "io.github.fourlastor.gdx"
 version = libVersion
 
 nexusPublishing {
