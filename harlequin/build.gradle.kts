@@ -26,8 +26,7 @@ dependencies {
 }
 
 java {
-    // TODO: add docs!
-//    withJavadocJar()
+    withJavadocJar()
     withSourcesJar()
 }
 
