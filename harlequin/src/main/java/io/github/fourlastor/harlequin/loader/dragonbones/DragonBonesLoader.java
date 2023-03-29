@@ -24,10 +24,10 @@ public class DragonBonesLoader extends AsynchronousAssetLoader<AnimationNode.Gro
     private final String basePath;
     private DragonBonesEntity data;
 
-    public DragonBonesLoader(Options options, JsonReader json, JsonParser<DragonBonesEntity> jsonParser) {
+    public DragonBonesLoader(Options options, JsonReader json) {
         super(new InternalFileHandleResolver());
         this.json = json;
-        this.jsonParser = jsonParser;
+        this.jsonParser = new DragonBonesEntity.Parser();
         this.atlasPath = options.atlasPath;
         this.basePath = options.basePath;
     }

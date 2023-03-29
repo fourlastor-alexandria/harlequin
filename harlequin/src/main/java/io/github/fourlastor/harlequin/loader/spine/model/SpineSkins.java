@@ -3,7 +3,6 @@ package io.github.fourlastor.harlequin.loader.spine.model;
 import com.badlogic.gdx.utils.JsonValue;
 import io.github.fourlastor.harlequin.json.JsonParser;
 import java.util.Map;
-import javax.inject.Inject;
 
 public class SpineSkins {
     public final String name;
@@ -23,9 +22,8 @@ public class SpineSkins {
 
         private final JsonParser<SpineSkin> skinParser;
 
-        @Inject
-        public Parser(JsonParser<SpineSkin> skinParser) {
-            this.skinParser = skinParser;
+        public Parser() {
+            this.skinParser = new SpineSkin.Parser();
         }
 
         @Override

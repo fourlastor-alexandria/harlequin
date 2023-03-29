@@ -5,7 +5,6 @@ import io.github.fourlastor.harlequin.animation.KeyFrame;
 import io.github.fourlastor.harlequin.json.JsonParser;
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
 
 public class SpineAnimationSlot {
 
@@ -17,7 +16,6 @@ public class SpineAnimationSlot {
 
     public static class Parser extends JsonParser<SpineAnimationSlot> {
 
-        @Inject
         public Parser() {}
 
         @Override

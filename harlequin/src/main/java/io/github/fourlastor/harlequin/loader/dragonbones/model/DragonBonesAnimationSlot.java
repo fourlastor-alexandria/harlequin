@@ -3,7 +3,6 @@ package io.github.fourlastor.harlequin.loader.dragonbones.model;
 import com.badlogic.gdx.utils.JsonValue;
 import io.github.fourlastor.harlequin.json.JsonParser;
 import java.util.List;
-import javax.inject.Inject;
 
 public class DragonBonesAnimationSlot {
 
@@ -22,9 +21,8 @@ public class DragonBonesAnimationSlot {
 
         private final JsonParser<DragonBonesDisplayFrame> displayFrameParser;
 
-        @Inject
-        public Parser(JsonParser<DragonBonesDisplayFrame> displayFrameParser) {
-            this.displayFrameParser = displayFrameParser;
+        public Parser() {
+            this.displayFrameParser = new DragonBonesDisplayFrame.Parser();
         }
 
         @Override

@@ -2,7 +2,6 @@ package io.github.fourlastor.harlequin.loader.dragonbones.model;
 
 import com.badlogic.gdx.utils.JsonValue;
 import io.github.fourlastor.harlequin.json.JsonParser;
-import javax.inject.Inject;
 
 public class DragonBonesTransform {
 
@@ -18,7 +17,6 @@ public class DragonBonesTransform {
 
     public static class Parser extends JsonParser<DragonBonesTransform> {
 
-        @Inject
         public Parser() {}
 
         @Override
