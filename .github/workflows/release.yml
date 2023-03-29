@@ -1,4 +1,4 @@
-name: Publish package to GitHub Packages
+name: Publish package to Maven
 on:
   # Automatically on every tag starting with v
   push:
