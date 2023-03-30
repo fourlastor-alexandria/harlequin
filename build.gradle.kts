@@ -15,6 +15,7 @@ buildscript {
 }
 
 val libVersion: String by project
+val publishGroup = "io.github.fourlastor.gdx"
 
 allprojects {
     repositories {
@@ -23,9 +24,10 @@ allprojects {
         gradlePluginPortal()
     }
     version = libVersion
+    group = publishGroup
 }
 
-group = "io.github.fourlastor.gdx"
+group = publishGroup
 version = libVersion
 
 nexusPublishing {
