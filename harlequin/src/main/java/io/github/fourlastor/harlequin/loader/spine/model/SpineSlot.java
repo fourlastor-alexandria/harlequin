@@ -2,7 +2,6 @@ package io.github.fourlastor.harlequin.loader.spine.model;
 
 import com.badlogic.gdx.utils.JsonValue;
 import io.github.fourlastor.harlequin.json.JsonParser;
-import javax.inject.Inject;
 
 public class SpineSlot {
     public final String name;
@@ -22,7 +21,6 @@ public class SpineSlot {
 
     public static class Parser extends JsonParser<SpineSlot> {
 
-        @Inject
         public Parser() {}
 
         @Override

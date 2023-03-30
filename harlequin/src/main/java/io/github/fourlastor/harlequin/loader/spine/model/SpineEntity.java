@@ -4,7 +4,6 @@ import com.badlogic.gdx.utils.JsonValue;
 import io.github.fourlastor.harlequin.json.JsonParser;
 import java.util.List;
 import java.util.Map;
-import javax.inject.Inject;
 
 public class SpineEntity {
 
@@ -44,18 +43,12 @@ public class SpineEntity {
         private final JsonParser<SpineSkins> skinsParser;
         private final JsonParser<SpineAnimation> animationParser;
 
-        @Inject
-        public Parser(
-                JsonParser<SpineSkeleton> skeletonParser,
-                JsonParser<SpineBone> boneParser,
-                JsonParser<SpineSlot> slotParser,
-                JsonParser<SpineSkins> skinsParser,
-                JsonParser<SpineAnimation> animationParser) {
-            this.skeletonParser = skeletonParser;
-            this.boneParser = boneParser;
-            this.slotParser = slotParser;
-            this.skinsParser = skinsParser;
-            this.animationParser = animationParser;
+        public Parser() {
+            this.skeletonParser = new SpineSkeleton.Parser();
+            this.boneParser = new SpineBone.Parser();
+            this.slotParser = new SpineSlot.Parser();
+            this.skinsParser = new SpineSkins.Parser();
+            this.animationParser = new SpineAnimation.Parser();
         }
 
         @Override
