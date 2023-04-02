@@ -4,6 +4,7 @@ import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetLoaderParameters;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.AsynchronousAssetLoader;
+import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -15,21 +16,26 @@ import io.github.fourlastor.harlequin.json.JsonParser;
 import io.github.fourlastor.harlequin.loader.dragonbones.model.DragonBonesEntity;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Objects;
 
 public class DragonBonesLoader extends AsynchronousAssetLoader<AnimationNode.Group, DragonBonesLoader.Parameters> {
     private final JsonReader json;
     private final JsonParser<DragonBonesEntity> jsonParser;
 
-    private final String atlasPath;
-    private final String basePath;
     private DragonBonesEntity data;
 
-    public DragonBonesLoader(Options options, JsonReader json) {
-        super(new InternalFileHandleResolver());
+    public DragonBonesLoader() {
+        this(new InternalFileHandleResolver(), new JsonReader());
+    }
+
+    public DragonBonesLoader(InternalFileHandleResolver resolver, JsonReader json) {
+        this(resolver, json, new DragonBonesEntity.Parser());
+    }
+
+    private DragonBonesLoader(FileHandleResolver resolver, JsonReader json, DragonBonesEntity.Parser jsonParser) {
+        super(resolver);
         this.json = json;
-        this.jsonParser = new DragonBonesEntity.Parser();
-        this.atlasPath = options.atlasPath;
-        this.basePath = options.basePath;
+        this.jsonParser = jsonParser;
     }
 
     @Override
@@ -39,17 +45,11 @@ public class DragonBonesLoader extends AsynchronousAssetLoader<AnimationNode.Gro
 
     @Override
     public AnimationNode.Group loadSync(AssetManager manager, String fileName, FileHandle file, Parameters parameters) {
-        TextureAtlas atlas = manager.get(atlasPath, TextureAtlas.class);
-        String texture = file.parent().child("texture").path();
-        String base = texture.substring(basePath.length() + 1);
-        Map<String, Animation.PlayMode> playModes;
-        if (parameters == null) {
-            playModes = Collections.emptyMap();
-        } else {
-            playModes = parameters.playModes;
-        }
+        Objects.requireNonNull(
+                parameters, "You must specify at least a texture atlas in the parameters of a DragonBones animation.");
+        TextureAtlas atlas = manager.get(parameters.atlas, TextureAtlas.class);
         try {
-            return new DragonBonesAnimationsParser(atlas, base, playModes).parse(data);
+            return new DragonBonesAnimationsParser(atlas, parameters.basePath, parameters.playModes).parse(data);
         } finally {
             data = null;
         }
@@ -59,24 +59,26 @@ public class DragonBonesLoader extends AsynchronousAssetLoader<AnimationNode.Gro
     @Override
     public Array<AssetDescriptor> getDependencies(String fileName, FileHandle file, Parameters parameters) {
         Array<AssetDescriptor> descriptors = new Array<>();
-        descriptors.add(new AssetDescriptor(atlasPath, TextureAtlas.class));
+        descriptors.add(new AssetDescriptor(parameters.atlas, TextureAtlas.class));
         return descriptors;
     }
 
-    public static class Options {
-        public final String atlasPath;
-        public final String basePath;
-
-        public Options(String atlasPath, String basePath) {
-            this.atlasPath = atlasPath;
-            this.basePath = basePath;
-        }
-    }
-
     public static class Parameters extends AssetLoaderParameters<AnimationNode.Group> {
+        public final String atlas;
+        public final String basePath;
         public final Map<String, Animation.PlayMode> playModes;
 
-        public Parameters(Map<String, Animation.PlayMode> playModes) {
+        public Parameters(String atlas) {
+            this(atlas, "", Collections.emptyMap());
+        }
+
+        public Parameters(String atlas, String basePath) {
+            this(atlas, basePath, Collections.emptyMap());
+        }
+
+        public Parameters(String atlas, String basePath, Map<String, Animation.PlayMode> playModes) {
+            this.atlas = atlas;
+            this.basePath = basePath;
             this.playModes = playModes;
         }
     }
