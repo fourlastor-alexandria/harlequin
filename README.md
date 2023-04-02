@@ -16,10 +16,10 @@ Harlequin introduces its own animation classes, a common interface `Animation`, 
 
 ### Fixed frames animations
 
-These are the standard libGDX `Animation`s. They're wrapped in `GdxAnimation`:
+These are similar to the standard libGDX `Animation`s:
 
 ```java
-new GdxAnimation(frameDuration, arrayOfFrames, playMode);
+new FixedFrameAnimation(frameDuration, arrayOfFrames, playMode);
 ```
 
 ### Keyframe-based animations
@@ -28,7 +28,7 @@ These animations support different length per frames, they're usually generated 
 
 A keyframe-based animation can be instantiated as such:
 ```java
-Animation<T> animation = new KeyFrameAnimation(keyFrames, length, playMode);
+Animation<T> animation = new KeyFrameAnimation(keyFrames, animationTotalLength, playMode);
 ```
 
 #### Constructing keyframes
