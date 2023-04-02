@@ -95,3 +95,11 @@ This parameter is optional and defaults to `""`. It's the base path for your ani
 #### Play modes
 
 By default, each animation will be played as `PlayMode.LOOP`, you can specify a different play mode by setting a key with the corresponding animation name in this map, missing play modes will default to `PlayMode.LOOP`.
+
+## GWT
+
+Add the following to your GWT xml file:
+
+```xml
+<inherits name="io.github.fourlastor.Harlequin" />
+```
