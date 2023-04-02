@@ -2,6 +2,14 @@
 
 Harlequin is a collection of extensions for [libGDX](https://github.com/libgdx/libgdx)'s scene2d system.
 
+## Setup
+
+Harlequin is hosted at Maven Central, you can get it by adding the following dependencies:
+
+```kts
+implementation("io.github.fourlastor.gdx:harlequin:$harlequinVersion")
+```
+
 ## Animations
 
 Harlequin introduces its own animation classes, a common interface `Animation`, and an enum `Animation.PlayMode` (which directly maps to libGDX's one). This has been done to be able to support different types of animations
