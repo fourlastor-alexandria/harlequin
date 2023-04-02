@@ -2,15 +2,15 @@ package io.github.fourlastor.harlequin.animation;
 
 import com.badlogic.gdx.utils.Array;
 
-public class GdxAnimation<T> implements Animation<T> {
+public class FixedFrameAnimation<T> implements Animation<T> {
 
     private final com.badlogic.gdx.graphics.g2d.Animation<T> animation;
 
-    public GdxAnimation(float frameDuration, Array<? extends T> keyFrames) {
+    public FixedFrameAnimation(float frameDuration, Array<? extends T> keyFrames) {
         this(frameDuration, keyFrames, PlayMode.NORMAL);
     }
 
-    public GdxAnimation(float frameDuration, Array<? extends T> keyFrames, PlayMode playMode) {
+    public FixedFrameAnimation(float frameDuration, Array<? extends T> keyFrames, PlayMode playMode) {
         this.animation = new com.badlogic.gdx.graphics.g2d.Animation<>(frameDuration, keyFrames, toGdx(playMode));
     }
 
