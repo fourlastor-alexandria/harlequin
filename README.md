@@ -45,7 +45,7 @@ You can use `AnimatedImage` to display/play any `Animation` of drawables.
 
 Harlequin can load animations from a [DragonBones](https://docs.egret.com/dragonbones/en) export (dragonbones json format) via the asset manager.
 
-:warning-sign: This only support sprite animations for now.
+:warning: This only support sprite animations for now.
 
 First of all, register the loader:
 
