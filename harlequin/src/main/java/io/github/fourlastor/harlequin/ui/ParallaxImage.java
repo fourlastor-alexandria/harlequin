@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TiledDrawable;
 import java.util.Objects;
 
 /**
@@ -14,17 +16,27 @@ import java.util.Objects;
  */
 public class ParallaxImage extends Actor {
 
-    private final TextureRegion texture;
     private final float factor;
 
     private final Vector2 currentDelta = new Vector2();
+    private final TiledDrawable drawable;
 
-    public ParallaxImage(TextureRegion texture, float factor) {
+    public ParallaxImage(TextureRegion textureRegion, float factor) {
+        this(new TextureRegionDrawable(textureRegion), factor);
+    }
+
+    public ParallaxImage(TextureRegionDrawable drawable, float factor) {
         super();
-        setBounds(0f, 0f, texture.getRegionWidth(), texture.getRegionHeight());
+        setBounds(0f, 0f, drawable.getMinWidth(), drawable.getMinHeight());
         setPosition(0f, 0f);
+        this.drawable = new TiledDrawable(drawable);
         this.factor = factor;
-        this.texture = texture;
+    }
+
+    @Override
+    public void setScale(float scaleXY) {
+        super.setScale(scaleXY);
+        drawable.setScale(scaleXY);
     }
 
     @Override
@@ -48,10 +60,8 @@ public class ParallaxImage extends Actor {
         float maxY = camera.viewportHeight + startY;
         float dX = currentDelta.x % targetWidth;
         float dY = currentDelta.y % targetHeight;
-        for (float x = startX + dX - targetWidth; x <= maxX; x += targetWidth) {
-            for (float y = startY + dY - targetHeight; y <= maxY; y += targetHeight) {
-                batch.draw(texture, x, y, targetWidth, targetHeight);
-            }
-        }
+        float x = startX + dX - targetWidth;
+        float y = startY + dY - targetHeight;
+        drawable.draw(batch, x, y, maxX - x, maxY - y);
     }
 }
