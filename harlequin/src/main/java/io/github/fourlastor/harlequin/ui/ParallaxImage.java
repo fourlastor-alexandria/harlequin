@@ -22,14 +22,18 @@ public class ParallaxImage extends Actor {
     private final TiledDrawable drawable;
 
     public ParallaxImage(TextureRegion textureRegion, float factor) {
-        this(new TextureRegionDrawable(textureRegion), factor);
+        this(new TiledDrawable(textureRegion), factor);
     }
 
-    public ParallaxImage(TextureRegionDrawable drawable, float factor) {
+    public ParallaxImage(TextureRegionDrawable textureRegionDrawable, float factor) {
+        this(new TiledDrawable(textureRegionDrawable), factor);
+    }
+
+    public ParallaxImage(TiledDrawable drawable, float factor) {
         super();
         setBounds(0f, 0f, drawable.getMinWidth(), drawable.getMinHeight());
         setPosition(0f, 0f);
-        this.drawable = new TiledDrawable(drawable);
+        this.drawable = drawable;
         this.factor = factor;
     }
 

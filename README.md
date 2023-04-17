@@ -10,6 +10,14 @@ Harlequin is hosted at Maven Central, you can get it by adding the following dep
 implementation("io.github.fourlastor.gdx:harlequin:$harlequinVersion")
 ```
 
+## GWT
+
+Add the following to your GWT xml file:
+
+```xml
+<inherits name="io.github.fourlastor.Harlequin" />
+```
+
 ## Animations
 
 Harlequin introduces its own animation classes, a common interface `Animation`, and an enum `Animation.PlayMode` (which directly maps to libGDX's one). This has been done to be able to support different types of animations
@@ -96,10 +104,8 @@ This parameter is optional and defaults to `""`. It's the base path for your ani
 
 By default, each animation will be played as `PlayMode.LOOP`, you can specify a different play mode by setting a key with the corresponding animation name in this map, missing play modes will default to `PlayMode.LOOP`.
 
-## GWT
+## Parallax images
 
-Add the following to your GWT xml file:
+You can create a `new ParallaxImage(textureOrDrawable, factor)` to have an image which moves slower/faster than the `Camera` movement.
 
-```xml
-<inherits name="io.github.fourlastor.Harlequin" />
-```
+Currently `ParallaxImage` fills the entire viewport, and the factor is applied to both X and Y.
