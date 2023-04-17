@@ -1,8 +1,10 @@
 [versions]
+ashley = "1.7.4"
 gdx = "1.11.0"
 nexus-publish = "1.3.0"
 spotless = "6.10.0"
 [libraries]
+ashley = { module = "com.badlogicgames.ashley:ashley", version.ref = "ashley" }
 gdx-core = { module = "com.badlogicgames.gdx:gdx", version.ref = "gdx" }
 [plugins]
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
