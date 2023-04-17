@@ -7,7 +7,10 @@ Harlequin is a collection of extensions for [libGDX](https://github.com/libgdx/l
 Harlequin is hosted at Maven Central, you can get it by adding the following dependencies:
 
 ```kts
+// Core library
 implementation("io.github.fourlastor.gdx:harlequin:$harlequinVersion")
+// Ashley extensions
+implementation("io.github.fourlastor.gdx:harlequin-ashley:$harlequinVersion")
 ```
 
 ## GWT
@@ -15,7 +18,12 @@ implementation("io.github.fourlastor.gdx:harlequin:$harlequinVersion")
 Add the following to your GWT xml file:
 
 ```xml
-<inherits name="io.github.fourlastor.Harlequin" />
+<module rename-to="html">
+  <!-- Core library -->
+  <inherits name="io.github.fourlastor.Harlequin" />
+  <!-- Ashley extension -->
+  <inherits name="io.github.fourlastor.HarlequinAshley" />
+</module>
 ```
 
 ## Animations
@@ -109,3 +117,40 @@ By default, each animation will be played as `PlayMode.LOOP`, you can specify a 
 You can create a `new ParallaxImage(textureOrDrawable, factor)` to have an image which moves slower/faster than the `Camera` movement.
 
 Currently `ParallaxImage` fills the entire viewport, and the factor is applied to both X and Y.
+
+## Ashley extension
+
+### Stage system
+
+You can use `StageSystem` to manage your stage through Ashley.
+
+#### Layers
+
+`StageSystem` supports layers, which are represented by an enum class, you will need to create the enum:
+
+```java
+// Layers are drawn top to bottom in enum order
+enum Layer {
+  BACKGROUND,
+  CHARACTER,
+  FOREGROUND_EFFECTS
+}
+
+StageSystem system = new StageSystem(stage, Layer::class);
+```
+
+### Actor component
+
+To add an entity on stage, you need to add `ActorComponent` to it.
+
+```java
+Entity entity = new Entity();
+AnimatedImage actor = new AnimatedImage(...);
+// character in character layer
+entity.add(new ActorComponent(actor, Layer.CHARACTER));
+
+Entity background = new Entity();
+ParallaxImage backgroundImage = new ParallaxImage(...);
+// background image in the background layer
+background.add(new ActorComponent(backgroundImage, Layer.BACKGROUND));
+```
