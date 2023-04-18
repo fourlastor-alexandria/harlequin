@@ -114,9 +114,9 @@ By default, each animation will be played as `PlayMode.LOOP`, you can specify a 
 
 ## Parallax images
 
-You can create a `new ParallaxImage(textureOrDrawable, factor)` to have an image which moves slower/faster than the `Camera` movement.
+You can create a `new ParallaxImage(textureOrDrawable, factorX, factorY)` to have an image which moves slower/faster than the `Camera` movement.
 
-Currently `ParallaxImage` fills the entire viewport, and the factor is applied to both X and Y.
+Currently `ParallaxImage` fills the entire viewport.
 
 ## Ashley extension
 
