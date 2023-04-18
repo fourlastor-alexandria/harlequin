@@ -46,6 +46,7 @@ public class StageSystem extends EntitySystem {
 
     @Override
     public void update(float deltaTime) {
+        stage.getViewport().apply();
         stage.act(deltaTime);
         stage.draw();
     }

@@ -16,20 +16,20 @@ import java.util.Objects;
  */
 public class ParallaxImage extends Actor {
 
-    private final float factor;
+    private final Vector2 factor;
 
     private final Vector2 currentDelta = new Vector2();
     private final TiledDrawable drawable;
 
-    public ParallaxImage(TextureRegion textureRegion, float factor) {
-        this(new TiledDrawable(textureRegion), factor);
+    public ParallaxImage(TextureRegion textureRegion, float factorX, float factorY) {
+        this(new TiledDrawable(textureRegion), factorX, factorY);
     }
 
-    public ParallaxImage(TextureRegionDrawable textureRegionDrawable, float factor) {
-        this(new TiledDrawable(textureRegionDrawable), factor);
+    public ParallaxImage(TextureRegionDrawable textureRegionDrawable, float factorX, float factorY) {
+        this(new TiledDrawable(textureRegionDrawable), new Vector2(factorX, factorY));
     }
 
-    public ParallaxImage(TiledDrawable drawable, float factor) {
+    public ParallaxImage(TiledDrawable drawable, Vector2 factor) {
         super();
         setBounds(0f, 0f, drawable.getMinWidth(), drawable.getMinHeight());
         setPosition(0f, 0f);
@@ -48,8 +48,8 @@ public class ParallaxImage extends Actor {
         super.act(delta);
         Camera camera = Objects.requireNonNull(getStage()).getCamera();
 
-        currentDelta.x = -(camera.position.x * factor);
-        currentDelta.y = -(camera.position.y * factor);
+        currentDelta.x = -(camera.position.x * factor.x);
+        currentDelta.y = -(camera.position.y * factor.y);
     }
 
     @Override
