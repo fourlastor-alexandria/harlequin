@@ -1,4 +1,6 @@
 # Harlequin
+[![Harlequin on Maven Central](https://img.shields.io/maven-central/v/io.github.fourlastor.gdx/harlequin?label=harlequin)](https://search.maven.org/artifact/io.github.fourlastor.gdx/harlequin)
+[![Harlequin-Ashley on Maven Central](https://img.shields.io/maven-central/v/io.github.fourlastor.gdx/harlequin-ashley?label=harlequin-ashley)](https://search.maven.org/artifact/io.github.fourlastor.gdx/harlequin-ashley)
 
 Harlequin is a collection of extensions for [libGDX](https://github.com/libgdx/libgdx)'s scene2d system.
 
