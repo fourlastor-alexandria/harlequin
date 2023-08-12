@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import io.github.fourlastor.harlequin.component.ActorComponent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 /**
  * An Ashley {@link EntitySystem} which supports layer through an arbitrary enum.
@@ -25,6 +26,10 @@ public class StageSystem extends EntitySystem {
     private final List<Group> layerGroups;
     private final ActorsListener actorsListener = new ActorsListener();
 
+    /**
+     * @param stage  the stage to control with this system.
+     * @param layers the enum used to determine the layer class.
+     */
     public StageSystem(Stage stage, Class<? extends Enum<?>> layers) {
         this(stage, layers, ComponentMapper.getFor(ActorComponent.class));
     }
@@ -35,12 +40,26 @@ public class StageSystem extends EntitySystem {
      * @param actors the {@link ComponentMapper} used to retrieve the actor component.
      */
     public StageSystem(Stage stage, Class<? extends Enum<?>> layers, ComponentMapper<ActorComponent> actors) {
+        this(stage, layers, actors, Group::new);
+    }
+
+    /**
+     * @param stage  the stage to control with this system.
+     * @param layers the enum used to determine the layer class.
+     * @param actors the {@link ComponentMapper} used to retrieve the actor component.
+     * @param layerFactory factory gor layer actors
+     */
+    public StageSystem(
+            Stage stage,
+            Class<? extends Enum<?>> layers,
+            ComponentMapper<ActorComponent> actors,
+            Supplier<? extends Group> layerFactory) {
         this.stage = stage;
         this.actors = actors;
         int layersCount = layers.getEnumConstants().length;
         this.layerGroups = new ArrayList<>(layersCount);
         for (int i = 0; i < layersCount; i++) {
-            this.layerGroups.add(new Group());
+            this.layerGroups.add(layerFactory.get());
         }
     }
 
