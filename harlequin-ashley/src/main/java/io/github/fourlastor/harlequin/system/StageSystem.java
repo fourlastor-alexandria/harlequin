@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import io.github.fourlastor.harlequin.component.ActorComponent;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
+import java.util.function.IntFunction;
 
 /**
  * An Ashley {@link EntitySystem} which supports layer through an arbitrary enum.
@@ -21,8 +21,10 @@ import java.util.function.Supplier;
 public class StageSystem extends EntitySystem {
 
     private static final Family FAMILY = Family.all(ActorComponent.class).get();
+    private static final ComponentMapper<ActorComponent> COMPONENT_MAPPER =
+            ComponentMapper.getFor(ActorComponent.class);
+    private final ComponentMapper<ActorComponent> actors = COMPONENT_MAPPER;
     private final Stage stage;
-    private final ComponentMapper<ActorComponent> actors;
     private final List<Group> layerGroups;
     private final ActorsListener actorsListener = new ActorsListener();
 
@@ -31,35 +33,20 @@ public class StageSystem extends EntitySystem {
      * @param layers the enum used to determine the layer class.
      */
     public StageSystem(Stage stage, Class<? extends Enum<?>> layers) {
-        this(stage, layers, ComponentMapper.getFor(ActorComponent.class));
+        this(stage, layers, ignored -> new Group());
     }
 
     /**
      * @param stage  the stage to control with this system.
      * @param layers the enum used to determine the layer class.
-     * @param actors the {@link ComponentMapper} used to retrieve the actor component.
-     */
-    public StageSystem(Stage stage, Class<? extends Enum<?>> layers, ComponentMapper<ActorComponent> actors) {
-        this(stage, layers, actors, Group::new);
-    }
-
-    /**
-     * @param stage  the stage to control with this system.
-     * @param layers the enum used to determine the layer class.
-     * @param actors the {@link ComponentMapper} used to retrieve the actor component.
      * @param layerFactory factory gor layer actors
      */
-    public StageSystem(
-            Stage stage,
-            Class<? extends Enum<?>> layers,
-            ComponentMapper<ActorComponent> actors,
-            Supplier<? extends Group> layerFactory) {
+    public StageSystem(Stage stage, Class<? extends Enum<?>> layers, IntFunction<? extends Group> layerFactory) {
         this.stage = stage;
-        this.actors = actors;
         int layersCount = layers.getEnumConstants().length;
         this.layerGroups = new ArrayList<>(layersCount);
         for (int i = 0; i < layersCount; i++) {
-            this.layerGroups.add(layerFactory.get());
+            this.layerGroups.add(layerFactory.apply(i));
         }
     }
 
