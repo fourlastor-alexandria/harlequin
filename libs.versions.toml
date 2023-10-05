@@ -1,11 +1,17 @@
 [versions]
 ashley = "1.7.4"
+funderby = "0.1.1"
+digital = "0.4.0"
 gdx = "1.11.0"
+jdkgdxds = "1.4.0"
 nexus-publish = "1.3.0"
 spotless = "6.10.0"
 [libraries]
 ashley = { module = "com.badlogicgames.ashley:ashley", version.ref = "ashley" }
+digital = { module = "com.github.tommyettinger:digital", version.ref = "digital" }
+funderby = { module = "com.github.tommyettinger:funderby", version.ref = "funderby" }
 gdx-core = { module = "com.badlogicgames.gdx:gdx", version.ref = "gdx" }
+jdkgdxgs = { module = "com.github.tommyettinger:jdkgdxds", version.ref = "jdkgdxds" }
 [plugins]
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 nexus-publish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "nexus-publish"}

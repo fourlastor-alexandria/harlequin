@@ -4,7 +4,7 @@ import com.badlogic.gdx.utils.FloatArray;
 import com.badlogic.gdx.utils.IntArray;
 import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.utils.Null;
-import java.util.ArrayList;
+import com.github.tommyettinger.ds.ObjectList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +51,7 @@ public abstract class JsonParser<T> {
     }
 
     protected final <V> List<V> getList(JsonValue value, Function<JsonValue, V> fn) {
-        List<V> values = new ArrayList<>(value.size);
+        List<V> values = new ObjectList<>(value.size);
         for (JsonValue entry : value) {
             values.add(fn.apply(entry));
         }

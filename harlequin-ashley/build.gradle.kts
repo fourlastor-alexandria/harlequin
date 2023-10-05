@@ -19,15 +19,25 @@ spotless {
     }
 }
 
-dependencies {
-    api(libs.ashley)
-    api(libs.gdx.core)
-}
-
 java {
     withJavadocJar()
     withSourcesJar()
 }
+
+dependencies {
+    api(libs.ashley)
+    api(libs.gdx.core)
+    implementation(libs.jdkgdxgs)
+    implementation(libs.funderby)
+    implementation(libs.digital)
+    "sourcesElements"(sources(libs.jdkgdxgs))
+    "sourcesElements"(sources(libs.funderby))
+    "sourcesElements"(sources(libs.digital))
+}
+
+fun DependencyHandlerScope.sources(
+    provider: Provider<MinimalExternalModuleDependency>,
+) = variantOf(provider) { classifier("sources") }
 
 publishing {
     publications {
