@@ -4,5 +4,5 @@ include(":harlequin")
 include(":harlequin-ashley")
 
 dependencyResolutionManagement {
-    versionCatalogs { create("libs") { from(files("libs.versions.toml")) } }
+    versionCatalogs { create("libs") }
 }
