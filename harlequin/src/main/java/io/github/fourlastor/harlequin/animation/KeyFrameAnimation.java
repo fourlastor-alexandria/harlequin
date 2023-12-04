@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.ToIntFunction;
 
+/** An animation based on {@link KeyFrame}s. */
 public class KeyFrameAnimation<T> implements Animation<T> {
 
     private static final float SECONDS_TO_MILLIS = 1000f;
