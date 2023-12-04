@@ -9,7 +9,7 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.github.tommyettinger.ds.ObjectList;
+import io.github.fourlastor.harlequin.Harlequin;
 import io.github.fourlastor.harlequin.component.ActorComponent;
 import java.util.List;
 import java.util.function.IntFunction;
@@ -44,7 +44,7 @@ public class StageSystem extends EntitySystem {
     public StageSystem(Stage stage, Class<? extends Enum<?>> layers, IntFunction<? extends Group> layerFactory) {
         this.stage = stage;
         int layersCount = layers.getEnumConstants().length;
-        this.layerGroups = new ObjectList<>(layersCount);
+        this.layerGroups = Harlequin.LIST_CREATOR.newList(layersCount);
         for (int i = 0; i < layersCount; i++) {
             this.layerGroups.add(layerFactory.apply(i));
         }

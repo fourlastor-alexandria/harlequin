@@ -28,6 +28,24 @@ Add the following to your GWT xml file:
 </module>
 ```
 
+## Common settings
+
+`io.github.fourlastor.harlequin.Harlequin` contains a field named `LIST_CREATOR` which can be set to use a different `List<T>` implementation. For example to use [jdkgdxds](https://github.com/tommyettinger/jdkgdxds):
+
+```java
+io.github.fourlastor.harlequin.Harlequin.LIST_CREATOR = new ListCreator() {
+    @Override
+    public <T> List<T> newList() {
+        return new ObjectList<>();
+    }
+    
+    @Override
+    public <T> List<T> newList(int size) {
+        return new ObjectList<>(size);
+    }
+};
+```
+
 ## Animations
 
 Harlequin introduces its own animation classes, a common interface `Animation`, and an enum `Animation.PlayMode` (which directly maps to libGDX's one). This has been done to be able to support different types of animations

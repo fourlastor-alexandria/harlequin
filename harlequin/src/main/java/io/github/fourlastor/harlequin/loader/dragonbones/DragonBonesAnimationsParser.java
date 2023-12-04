@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.FloatArray;
-import com.github.tommyettinger.ds.ObjectList;
+import io.github.fourlastor.harlequin.Harlequin;
 import io.github.fourlastor.harlequin.animation.Animation;
 import io.github.fourlastor.harlequin.animation.AnimationNode;
 import io.github.fourlastor.harlequin.animation.KeyFrame;
@@ -46,19 +46,19 @@ public class DragonBonesAnimationsParser {
 
     private AnimationNode.Group tree(DragonBonesArmature armature, DragonBonesBone root) {
         List<DragonBonesBone> bones = armature.childrenBones(root.name);
-        List<AnimationNode> boneNodes = new ObjectList<>(bones.size());
+        List<AnimationNode> boneNodes = Harlequin.LIST_CREATOR.newList(bones.size());
         for (int i = 0; i < bones.size(); i++) {
             DragonBonesBone bone = bones.get(i);
             boneNodes.add(tree(armature, bone));
         }
 
         List<DragonBonesArmatureSlot> slots = armature.childrenSlots(root.name);
-        List<AnimationNode> slotNodes = new ObjectList<>(bones.size());
+        List<AnimationNode> slotNodes = Harlequin.LIST_CREATOR.newList(bones.size());
         for (int i = 0; i < slots.size(); i++) {
             DragonBonesArmatureSlot slot = slots.get(i);
             slotNodes.add(node(armature, slot));
         }
-        List<AnimationNode> nodes = new ObjectList<>(boneNodes.size() + slotNodes.size());
+        List<AnimationNode> nodes = Harlequin.LIST_CREATOR.newList(boneNodes.size() + slotNodes.size());
         nodes.addAll(boneNodes);
         nodes.addAll(slotNodes);
 
@@ -94,7 +94,7 @@ public class DragonBonesAnimationsParser {
             if (animationSlot == null) {
                 animations.put(animation.name, defaultImage);
             } else {
-                List<KeyFrame<Drawable>> frames = new ObjectList<>(animationSlot.displayFrames.size());
+                List<KeyFrame<Drawable>> frames = Harlequin.LIST_CREATOR.newList(animationSlot.displayFrames.size());
                 int durationMs = 0;
                 for (DragonBonesDisplayFrame displayFrame : animationSlot.displayFrames) {
                     frames.add(KeyFrame.create(durationMs, drawable(skinSlot.displays.get(displayFrame.value).name)));

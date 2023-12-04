@@ -1,7 +1,7 @@
 package io.github.fourlastor.harlequin.loader.dragonbones.model;
 
 import com.badlogic.gdx.utils.JsonValue;
-import com.github.tommyettinger.ds.ObjectList;
+import io.github.fourlastor.harlequin.Harlequin;
 import io.github.fourlastor.harlequin.json.JsonParser;
 import java.util.List;
 
@@ -51,7 +51,7 @@ public class DragonBonesArmature {
     }
 
     public List<DragonBonesBone> childrenBones(String name) {
-        List<DragonBonesBone> bones = new ObjectList<>();
+        List<DragonBonesBone> bones = Harlequin.LIST_CREATOR.newList();
         for (int i = 0; i < this.bones.size(); i++) {
             DragonBonesBone bone = this.bones.get(i);
             if (name.equals(bone.parent)) {
@@ -62,7 +62,7 @@ public class DragonBonesArmature {
     }
 
     public List<DragonBonesArmatureSlot> childrenSlots(String name) {
-        List<DragonBonesArmatureSlot> slots = new ObjectList<>();
+        List<DragonBonesArmatureSlot> slots = Harlequin.LIST_CREATOR.newList();
         for (int i = 0; i < this.slots.size(); i++) {
             DragonBonesArmatureSlot slot = this.slots.get(i);
             if (name.equals(slot.parent)) {

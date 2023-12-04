@@ -1,7 +1,7 @@
 package io.github.fourlastor.harlequin.loader.spine.model;
 
 import com.badlogic.gdx.utils.JsonValue;
-import com.github.tommyettinger.ds.ObjectList;
+import io.github.fourlastor.harlequin.Harlequin;
 import io.github.fourlastor.harlequin.animation.KeyFrame;
 import io.github.fourlastor.harlequin.json.JsonParser;
 import java.util.List;
@@ -20,7 +20,7 @@ public class SpineAnimationSlot {
 
         @Override
         public SpineAnimationSlot parse(JsonValue value) {
-            List<KeyFrame<String>> keyFrames = new ObjectList<>(value.size);
+            List<KeyFrame<String>> keyFrames = Harlequin.LIST_CREATOR.newList(value.size);
             for (JsonValue it : value.get("attachment")) {
                 keyFrames.add(KeyFrame.create((int) (it.getFloat("time") * 1000), it.getString("name")));
             }
