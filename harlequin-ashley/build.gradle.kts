@@ -1,7 +1,3 @@
-@Suppress(
-    // known false positive: https://youtrack.jetbrains.com/issue/KTIJ-19369
-    "DSL_SCOPE_VIOLATION"
-)
 plugins {
     `java-library`
     `maven-publish`
@@ -62,6 +58,7 @@ publishing {
 }
 
 signing {
+    setRequired({ project.hasProperty("RELEASE") })
     val signingKey: String? by project
     val signingPassword: String? by project
     useInMemoryPgpKeys(signingKey, signingPassword)
