@@ -2,6 +2,7 @@ package io.github.fourlastor.harlequin.animation;
 
 import com.badlogic.gdx.utils.Array;
 
+/** {@link Animation} where each keyframe has a fixed length. */
 public class FixedFrameAnimation<T> implements Animation<T> {
 
     private final com.badlogic.gdx.graphics.g2d.Animation<T> animation;

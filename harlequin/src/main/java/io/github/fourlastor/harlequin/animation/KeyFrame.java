@@ -1,10 +1,15 @@
 package io.github.fourlastor.harlequin.animation;
 
+/** A keyframe for a {@link KeyFrameAnimation}. */
 public abstract class KeyFrame<T> {
+
+    /** Position of the keyframe in the track. */
     abstract int start();
 
+    /** Value assigned to this keyframe. */
     abstract T value();
 
+    /** Returns an implementation of {@link KeyFrame}. */
     public static <T> KeyFrame<T> create(int start, T value) {
         return new KeyFrameImpl<>(start, value);
     }

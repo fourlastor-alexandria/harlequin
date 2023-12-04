@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import io.github.fourlastor.harlequin.animation.Animation;
 
+/** Actors which will play an {@link Animation} and update itself over time. */
 public class AnimatedImage extends Image {
 
     private Animation<? extends Drawable> animation;
@@ -31,28 +32,34 @@ public class AnimatedImage extends Image {
         return animation.getKeyFrame(position);
     }
 
+    /** Updates the {@link Animation} to play and resets the progress to 0. */
     public void setAnimation(Animation<? extends Drawable> animation) {
         this.animation = animation;
         setProgress(0f);
     }
 
+    /** Returns true if the animation has finished. Looping animation never finish */
     public boolean animationFinished() {
         return animation.isAnimationFinished(playTime);
     }
 
+    /** Updates the animation {@link Animation.PlayMode}. */
     public void setPlayMode(Animation.PlayMode playMode) {
         animation.setPlayMode(playMode);
     }
 
+    /** Updates the animation progress. */
     public void setProgress(float progress) {
         this.playTime = progress;
         setDrawable(frameAt(progress));
     }
 
+    /** Returns true if the animation is currently playing. */
     public boolean isPlaying() {
         return playing;
     }
 
+    /** Updates the playing status. */
     public void setPlaying(boolean playing) {
         this.playing = playing;
     }
