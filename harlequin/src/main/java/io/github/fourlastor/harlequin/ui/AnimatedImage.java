@@ -9,8 +9,10 @@ public class AnimatedImage extends Image {
 
     private Animation<? extends Drawable> animation;
 
-    public boolean playing = true;
-    public float playTime = 0f;
+    private boolean playing = true;
+    private float playTime = 0f;
+
+    private float speed = 1f;
 
     public AnimatedImage(Animation<? extends Drawable> animation) {
         super(animation.getKeyFrame(0));
@@ -23,7 +25,7 @@ public class AnimatedImage extends Image {
         if (!playing) {
             return;
         }
-        playTime += delta;
+        playTime += delta * speed;
         Drawable frame = frameAt(playTime);
         setDrawable(frame);
     }
@@ -62,5 +64,15 @@ public class AnimatedImage extends Image {
     /** Updates the playing status. */
     public void setPlaying(boolean playing) {
         this.playing = playing;
+    }
+
+    /** Returns the current play speed. */
+    public float getSpeed() {
+        return speed;
+    }
+
+    /** Sets the current play speed. 1 represents normal playing speed. */
+    public void setSpeed(float speed) {
+        this.speed = speed;
     }
 }
