@@ -11,7 +11,6 @@ public class AnimatedImage extends Image {
 
     private boolean playing = true;
     private float playTime = 0f;
-
     private float speed = 1f;
 
     public AnimatedImage(Animation<? extends Drawable> animation) {
