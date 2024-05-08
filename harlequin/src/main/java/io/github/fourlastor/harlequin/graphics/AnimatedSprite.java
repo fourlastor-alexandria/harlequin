@@ -1,40 +1,37 @@
-package io.github.fourlastor.harlequin.ui;
+package io.github.fourlastor.harlequin.graphics;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import io.github.fourlastor.harlequin.animation.Animation;
 
-/** Actor which will play an {@link Animation} and update itself over time. */
-public class AnimatedImage extends Image {
+/** {@link Sprite} which will play an {@link Animation} and update itself over time. */
+public class AnimatedSprite extends Sprite {
 
-    private Animation<? extends Drawable> animation;
+    private Animation<? extends TextureRegion> animation;
 
     private boolean playing = true;
     private float playTime = 0f;
     private float speed = 1f;
 
-    public AnimatedImage(Animation<? extends Drawable> animation) {
+    public AnimatedSprite(Animation<? extends TextureRegion> animation) {
         super(animation.getKeyFrame(0));
         setAnimation(animation);
     }
 
-    @Override
-    public void act(float delta) {
-        super.act(delta);
+    /** Advances this animation */
+    public void advance(float delta) {
         if (!playing) {
             return;
         }
-        playTime += delta * speed;
-        Drawable frame = frameAt(playTime);
-        setDrawable(frame);
+        setProgress(playTime + (delta * speed));
     }
 
-    private Drawable frameAt(float position) {
+    private TextureRegion frameAt(float position) {
         return animation.getKeyFrame(position);
     }
 
     /** Updates the {@link Animation} to play and resets the progress to 0. */
-    public void setAnimation(Animation<? extends Drawable> animation) {
+    public void setAnimation(Animation<? extends TextureRegion> animation) {
         this.animation = animation;
         setProgress(0f);
     }
@@ -52,7 +49,7 @@ public class AnimatedImage extends Image {
     /** Updates the animation progress. */
     public void setProgress(float progress) {
         this.playTime = progress;
-        setDrawable(frameAt(progress));
+        setRegion(frameAt(progress));
     }
 
     /** Returns true if the animation is currently playing. */
